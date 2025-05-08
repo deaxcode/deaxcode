@@ -1,54 +1,63 @@
-<p align="center">
-  <!-- プロフィール閲覧数バッジ -->
-  <img src="https://komarev.com/ghpvc/?username=YourGitHubID&style=flat-square&color=ff69b4" alt="Profile Views" />
-</p>
+// animated-profile.ts
+import chalk from 'chalk';
+import chalkAnimation from 'chalk-animation';
+import figlet from 'figlet';
+import { setTimeout } from 'timers/promises';
 
-<h1 align="center">天音さら (Sara Amane) 👩‍💻</h1>
-<p align="center">19歳フリーランスエンジニア | Java/Kotlin メインで Webツール自作中 🚀</p>
+interface Profile {
+  name: string;
+  age: number;
+  gender: string;
+  skills: string[];
+  rating: number;
+  note: string;
+}
 
-<p align="center">
-  <!-- 連絡先バッジ -->
-  <a href="mailto:your.email@example.com">
-    <img src="https://img.shields.io/badge/✉️-Email-ff69b4?style=flat-square" alt="Email" />
-  </a>
-  <a href="https://twitter.com/YourTwitter">
-    <img src="https://img.shields.io/badge/🐦-@YourTwitter-1da1f2?style=flat-square&logo=twitter" alt="Twitter" />
-  </a>
-  <a href="https://www.linkedin.com/in/YourLinkedIn/">
-    <img src="https://img.shields.io/badge/🔗-LinkedIn-0077b5?style=flat-square&logo=linkedin" alt="LinkedIn" />
-  </a>
-</p>
+const profile: Profile = {
+  name: '天音さら',
+  age: 19,
+  gender: '女性',
+  skills: [
+    'Java / Kotlin (メイン)',
+    'Python',
+    'JavaScript / TypeScript',
+    'C++ / C# / C',
+    'HTML & CSS',
+  ],
+  rating: 1900,
+  note: 'ソースコードを公開していきます！',
+};
 
----
+async function animateHeader(text: string) {
+  // レインボーアニメーションで大見出し
+  const animation = chalkAnimation.rainbow(figlet.textSync(text, {
+    horizontalLayout: 'full',
+    verticalLayout: 'default',
+  }));
+  // 2秒間アニメーション表示
+  await setTimeout(2000);
+  animation.stop();
+}
 
-## 🛠️ スキルセット  
-- **言語**: Java · Kotlin · Python · JavaScript · C++ · C# · C  
-- **マークアップ**: HTML · CSS  
-- **ツール**: Spring Boot · Selenium · React · TypeScript · Deno
+function printProfile(p: Profile) {
+  console.log(chalk.bold.hex('#FF69B4')('☆ プロフィール ☆'));
+  console.log(`${chalk.bold.cyan('👤 名前:')} ${chalk.white(p.name)}`);
+  console.log(`${chalk.bold.cyan('🎂 年齢:')} ${chalk.white(`${p.age}歳`)}`);
+  console.log(`${chalk.bold.cyan('🚻 性別:')} ${chalk.white(p.gender)}`);
+  console.log(chalk.bold.magenta('💻 スキルセット:'));
+  p.skills.forEach((s) =>
+    console.log(`  ${chalk.green('•')} ${chalk.white(s)}`)
+  );
+  console.log(
+    `${chalk.bold.yellow('🥇 AtCoder Rating:')} ${chalk.white(p.rating)}`
+  );
+  console.log(`${chalk.bold.gray('🤖')} ${chalk.white(p.note)}`);
+}
 
----
+async function main() {
+  await animateHeader('Sara Amane');  
+  printProfile(profile);
+  console.log(chalk.italic.dim('— ご依頼・コラボ歓迎！'));
+}
 
-## 🚀 実績ハイライト  
-- **Webスクレイピングツール**  
-  Kotlin + Seleniumで自作 → GitHub ★30以上獲得  
-- **ポートフォリオサイト**  
-  Spring Boot + Thymeleaf + Herokuで24h稼働中  
-- **タスク管理SPA**  
-  Kotlin/JS × React + Netlify → 友人チームで運用中  
-- **OSS貢献**  
-  人気KotlinライブラリへPR 10件以上マージ
-
----
-
-## 📈 GitHub Stats  
-<p align="center">
-  <!-- GitHub Readme Stats Card -->
-  <img src="https://github-readme-stats.vercel.app/api?username=YourGitHubID&show_icons=true&theme=react&count_private=true" alt="GitHub Stats" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=YourGitHubID&layout=compact&theme=react" alt="Top Languages" />
-</p>
-
----
-
-## 🤝 Let’s Connect!  
-- 💌 お仕事、コラボ、雑談…DM or ✉️メールで気軽にどうぞ！  
-  your.email@example.com
+main();
