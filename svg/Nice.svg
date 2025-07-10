@@ -6,153 +6,204 @@
   xmlns="http://www.w3.org/2000/svg"
 >
   <foreignObject width="100%" height="100%">
-    <div xmlns="http://www.w3.org/1999/xhtml">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="height:100%;margin:0;">
+      <style>
+        * {
+          box-sizing: border-box;
+          user-select: none;
+        }
+        .card {
+          position: relative;
+          border-radius: 18px;
+          padding: 18px 24px;
+          overflow: hidden;
+          box-shadow:
+            0 6px 20px rgba(0,0,0,0.08),
+            inset 0 2px 8px rgba(255,255,255,0.4);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(135deg, #fdf6f0, #e9dcd3);
+          animation: floatCard 8s ease-in-out infinite alternate;
+          cursor: default;
+          transition: box-shadow 0.3s ease;
+          height: 100%;
+          color: #5b4435;
+          font-family: 'Raleway', 'Segoe UI', sans-serif;
+        }
+        .card:hover {
+          box-shadow:
+            0 10px 30px rgba(0,0,0,0.15),
+            inset 0 4px 12px rgba(255,255,255,0.7);
+          filter: brightness(1.05);
+        }
+        .wave-bg {
+          position: absolute;
+          top: 0; left: 0;
+          width: 200%;
+          height: 300%;
+          background:
+            radial-gradient(circle at 20% 20%, rgba(255, 200, 150, 0.1), transparent 30%),
+            radial-gradient(circle at 80% 80%, rgba(180, 120, 90, 0.1), transparent 30%);
+          animation: waveMove 40s linear infinite;
+          pointer-events: none;
+          z-index: 0;
+          border-radius: 18px;
+        }
+        .text-content {
+          position: relative;
+          z-index: 1;
+          text-align: center;
+          animation: contentFloat 6s ease-in-out infinite alternate;
+          color: #5b4435; /* グラデーション外して普通の色 */
+        }
+        .name {
+          font-size: 28px;
+          font-weight: 800;
+          letter-spacing: 0.5px;
+          margin-bottom: 4px;
+          animation: popPulse 6s ease-in-out infinite alternate;
+          color: #4a3220; /* グラデーション外し */
+          user-select: text;
+        }
+        .subtitle {
+          font-size: 13px;
+          font-weight: 500;
+          margin-bottom: 12px;
+          opacity: 0.85;
+          user-select: text;
+          color: #7e5c4c;
+          animation: subtitleFade 8s ease-in-out infinite alternate;
+        }
+        .links {
+          font-size: 11px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          animation: slideLinks 8s ease-in-out infinite alternate;
+        }
+        .links p {
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+          color: #5c4438;
+        }
+        .links span {
+          font-weight: 600;
+          color: #a56b4e;
+          min-width: 70px;
+          text-align: right;
+          user-select: text;
+        }
+        .links a {
+          position: relative;
+          color: #fff;
+          text-decoration: none;
+          font-family: 'Fira Code', monospace;
+          font-size: 11px;
+          background: #c88b6f;
+          padding: 2px 8px;
+          border-radius: 5px;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+          overflow: hidden;
+          z-index: 0;
+        }
+        .links a::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          background: rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          transition: width 0.4s ease, height 0.4s ease;
+          z-index: -1;
+        }
+        .links a:hover::after {
+          width: 120%;
+          height: 300%;
+        }
+        .links a:hover {
+          background: #dd9a7e;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+        }
+        .corner-badge {
+          position: absolute;
+          right: 12px;
+          bottom: 12px;
+          font-size: 20px;
+          opacity: 0.8;
+          user-select: none;
+          animation: floatBadge 6s ease-in-out infinite alternate, rotateBadge 12s linear infinite;
+          z-index: 2;
+        }
+
+        @keyframes floatCard {
+          0% { transform: translateY(3px) rotate(-1deg); }
+          50% { transform: translateY(0) rotate(1deg); }
+          100% { transform: translateY(3px) rotate(-1deg); }
+        }
+        @keyframes contentFloat {
+          0% { opacity: 0.96; transform: translateY(1px); }
+          50% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0.96; transform: translateY(1px); }
+        }
+        @keyframes popPulse {
+          0% { transform: scale(0.995); }
+          50% { transform: scale(1.02); }
+          100% { transform: scale(0.995); }
+        }
+        @keyframes subtitleFade {
+          0% { opacity: 0.8; }
+          50% { opacity: 0.95; }
+          100% { opacity: 0.8; }
+        }
+        @keyframes slideLinks {
+          0% { opacity: 0.9; transform: translateY(1px); }
+          50% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0.9; transform: translateY(1px); }
+        }
+        @keyframes floatBadge {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-4px); }
+          100% { transform: translateY(0px); }
+        }
+        @keyframes rotateBadge {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes waveMove {
+          0% { background-position: 0% 0%, 0% 0%; }
+          100% { background-position: 100% 100%, 100% 100%; }
+        }
+      </style>
+
       <div class="card">
+        <div class="wave-bg"></div>
+
         <div class="text-content">
           <div class="name">deax</div>
           <div class="subtitle">Freelance Engineer</div>
           <div class="links">
             <p>
               <span>Portfolio</span>
-              <a href="https://voidcore.jp/deax" target="_blank">voidcore.jp/deax</a>
+              <a href="https://voidcore.jp/deax" target="_blank" rel="noopener noreferrer">voidcore.jp/deax</a>
             </p>
             <p>
               <span>Community</span>
-              <a href="https://discord.gg/voidcore" target="_blank">discord.gg/voidcore</a>
+              <a href="https://discord.gg/voidcore" target="_blank" rel="noopener noreferrer">discord.gg/voidcore</a>
             </p>
           </div>
         </div>
+
+        <div class="corner-badge" title="Leaf">🌿</div>
       </div>
-
-      <style>
-        * {
-          box-sizing: border-box;
-        }
-
-        .card {
-          font-family: 'Raleway', 'Segoe UI', sans-serif;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          height: 150px;
-          width: 100%;
-          background: linear-gradient(135deg, #fefaf4, #f3e9e1);
-          border-radius: 18px;
-          padding: 18px 24px;
-          box-shadow:
-            0 4px 8px rgba(0, 0, 0, 0.04),
-            inset 0 1px 0 rgba(255, 255, 255, 0.3);
-          animation: fadeIn 1.2s ease-out both;
-        }
-
-        .text-content {
-          text-align: center;
-          color: #5b4435;
-          animation: contentFade 1.4s ease-out both;
-        }
-
-        .name {
-          font-size: 30px;
-          font-weight: 800;
-          color: #4a3220;
-          letter-spacing: 0.5px;
-          margin-bottom: 4px;
-          animation: popIn 1.5s ease-out both;
-        }
-
-        .subtitle {
-          font-size: 12px;
-          font-weight: 500;
-          color: #7e5c4c;
-          margin-bottom: 10px;
-          opacity: 0.85;
-        }
-
-        .links {
-          font-size: 11px;
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-          color: #5c4438;
-          animation: slideLinks 2s ease-out both;
-        }
-
-        .links p {
-          margin: 0;
-          display: flex;
-          justify-content: center;
-          gap: 8px;
-        }
-
-        .links span {
-          font-weight: 600;
-          color: #a56b4e;
-          min-width: 70px;
-          text-align: right;
-        }
-
-        .links a {
-          color: #7e4f3a;
-          text-decoration: none;
-          font-family: 'Fira Code', monospace;
-          font-size: 11px;
-          transition: all 0.3s ease;
-          background: rgba(255, 255, 255, 0.3);
-          padding: 1px 4px;
-          border-radius: 4px;
-        }
-
-        .links a:hover {
-          color: #c7705a;
-          text-decoration: underline;
-          background: rgba(255, 255, 255, 0.5);
-        }
-
-        @keyframes fadeIn {
-          0% {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes popIn {
-          0% {
-            opacity: 0;
-            transform: scale(0.9);
-          }
-          100% {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        @keyframes contentFade {
-          0% {
-            opacity: 0;
-            transform: translateY(5px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slideLinks {
-          0% {
-            opacity: 0;
-            transform: translateY(8px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      </style>
     </div>
   </foreignObject>
 </svg>
