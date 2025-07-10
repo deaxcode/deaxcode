@@ -7,26 +7,20 @@
 >
   <foreignObject width="100%" height="100%">
     <div xmlns="http://www.w3.org/1999/xhtml">
-      <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
-      <div class="container">
-        <div class="card">
-          <div class="shine"></div>
-          <div class="content">
-            <div class="name animate-fadeInUp">deax</div>
-            <div class="subtitle animate-slideIn">Freelance Engineer</div>
-            <div class="links">
-              <p>
-                <span>Portfolio</span>
-                <a href="https://voidcore.jp/deax" target="_blank">voidcore.jp/deax</a>
-              </p>
-              <p>
-                <span>Community</span>
-                <a href="https://discord.gg/voidcore" target="_blank">discord.gg/voidcore</a>
-              </p>
-            </div>
+      <div class="card">
+        <div class="text-content">
+          <div class="name">deax</div>
+          <div class="subtitle">Freelance Engineer</div>
+          <div class="links">
+            <p>
+              <span>Portfolio</span>
+              <a href="https://voidcore.jp/deax" target="_blank">voidcore.jp/deax</a>
+            </p>
+            <p>
+              <span>Community</span>
+              <a href="https://discord.gg/voidcore" target="_blank">discord.gg/voidcore</a>
+            </p>
           </div>
-          <div class="sparkle">✨</div>
         </div>
       </div>
 
@@ -35,39 +29,130 @@
           box-sizing: border-box;
         }
 
-        .container {
-          font-family: "Poppins", sans-serif;
+        .card {
+          font-family: 'Raleway', 'Segoe UI', sans-serif;
           display: flex;
+          flex-direction: column;
           justify-content: center;
           align-items: center;
           height: 150px;
           width: 100%;
-          background: linear-gradient(135deg, #ffe6f0, #d0f0fd);
-          overflow: hidden;
-          border-radius: 20px;
-          padding: 10px;
+          background: linear-gradient(135deg, #fefaf4, #f3e9e1);
+          border-radius: 18px;
+          padding: 18px 24px;
+          box-shadow:
+            0 4px 8px rgba(0, 0, 0, 0.04),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+          animation: fadeIn 1.2s ease-out both;
         }
 
-        .card {
-          position: relative;
-          width: 95%;
-          height: 140px;
-          background: linear-gradient(145deg, #fff0fb, #b8e0f9);
-          border-radius: 20px;
-          box-shadow: 6px 6px 18px #c1d9f0, -6px -6px 18px #ffffff;
-          overflow: hidden;
-          padding: 22px 32px;
+        .text-content {
+          text-align: center;
+          color: #5b4435;
+          animation: contentFade 1.4s ease-out both;
         }
 
-        .shine {
-          pointer-events: none;
-          position: absolute;
-          top: -60%;
-          left: -30%;
-          width: 120%;
-          height: 200%;
-          background: linear-gradient(60deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.1));
-          transform: rotate(25deg);
-          animation: shineMove 6s ease-in-out infinite;
-          border-radius: 50%;
-          filter: drop
+        .name {
+          font-size: 30px;
+          font-weight: 800;
+          color: #4a3220;
+          letter-spacing: 0.5px;
+          margin-bottom: 4px;
+          animation: popIn 1.5s ease-out both;
+        }
+
+        .subtitle {
+          font-size: 12px;
+          font-weight: 500;
+          color: #7e5c4c;
+          margin-bottom: 10px;
+          opacity: 0.85;
+        }
+
+        .links {
+          font-size: 11px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          color: #5c4438;
+          animation: slideLinks 2s ease-out both;
+        }
+
+        .links p {
+          margin: 0;
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+        }
+
+        .links span {
+          font-weight: 600;
+          color: #a56b4e;
+          min-width: 70px;
+          text-align: right;
+        }
+
+        .links a {
+          color: #7e4f3a;
+          text-decoration: none;
+          font-family: 'Fira Code', monospace;
+          font-size: 11px;
+          transition: all 0.3s ease;
+          background: rgba(255, 255, 255, 0.3);
+          padding: 1px 4px;
+          border-radius: 4px;
+        }
+
+        .links a:hover {
+          color: #c7705a;
+          text-decoration: underline;
+          background: rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes popIn {
+          0% {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes contentFade {
+          0% {
+            opacity: 0;
+            transform: translateY(5px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideLinks {
+          0% {
+            opacity: 0;
+            transform: translateY(8px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      </style>
+    </div>
+  </foreignObject>
+</svg>
