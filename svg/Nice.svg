@@ -56,7 +56,7 @@
           z-index: 1;
           text-align: center;
           animation: contentFloat 6s ease-in-out infinite alternate;
-          color: #5b4435; /* グラデーション外して普通の色 */
+          color: #5b4435;
         }
         .name {
           font-size: 28px;
@@ -64,7 +64,7 @@
           letter-spacing: 0.5px;
           margin-bottom: 4px;
           animation: popPulse 6s ease-in-out infinite alternate;
-          color: #4a3220; /* グラデーション外し */
+          color: #4a3220;
           user-select: text;
         }
         .subtitle {
@@ -193,7 +193,7 @@
           <div class="links">
             <p>
               <span>Portfolio</span>
-              <a href="https://voidcore.jp/deax" target="_blank" rel="noopener noreferrer">https://deax.jp/my</a>
+              <a href="https://deax.jp/my" target="_blank" rel="noopener noreferrer">https://deax.jp/my</a>
             </p>
             <p>
               <span>Community</span>
